@@ -24,10 +24,7 @@ class Game:
             raise ValueError("Такой клетки нет")
         if (row, col) in self.cells:
             raise ValueError("Клетка уже занята")
-        if len(self.cells) % 2 == 0:
-            self.cells[(row, col)] = "X"
-        else:
-            self.cells[(row, col)] = "O"
+        self.cells[(row, col)] = self.current_player()
 
     def winner(self):
         for a, b, c in LINES:
@@ -36,4 +33,12 @@ class Game:
         return None
 
     def is_draw(self):
-        return len(self.cells) == 9
+        return len(self.cells) == 9 and self.winner() is None
+
+    def current_player(self):
+        if self.winner() is not None:
+            return None
+        if len(self.cells) % 2 == 0:
+            return "X"
+        return "O"
+
