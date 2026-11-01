@@ -1,0 +1,44 @@
+name: Документация
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Получение кода
+        uses: actions/checkout@v5
+
+      - name: Установка Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Установка pdoc
+        run: pip install pdoc
+
+      - name: Сборка документации из docstrings
+        run: pdoc game.py -o site
+
+      - name: Загрузка сайта
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Публикация на GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
