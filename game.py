@@ -36,4 +36,5 @@ class Game:
         return None
 
     def is_draw(self):
-        return len(self.cells) == 9
+        return len(self.cells) == 9 and self.winner() is None
+
