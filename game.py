@@ -24,10 +24,8 @@ class Game:
             raise ValueError("Такой клетки нет")
         if (row, col) in self.cells:
             raise ValueError("Клетка уже занята")
-        if len(self.cells) % 2 == 0:
-            self.cells[(row, col)] = "X"
-        else:
-            self.cells[(row, col)] = "O"
+        self.cells[(row, col)] = self.current_player()
+
 
     def winner(self):
         for a, b, c in LINES:
