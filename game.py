@@ -26,7 +26,6 @@ class Game:
             raise ValueError("Клетка уже занята")
         self.cells[(row, col)] = self.current_player()
 
-
     def winner(self):
         for a, b, c in LINES:
             if a in self.cells and self.cells[a] == self.cells.get(b) == self.cells.get(c):
@@ -35,7 +34,7 @@ class Game:
 
     def is_draw(self):
         return len(self.cells) == 9 and self.winner() is None
-    
+
     def current_player(self):
         if len(self.cells) % 2 == 0:
             return "X"
