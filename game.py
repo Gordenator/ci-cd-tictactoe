@@ -39,5 +39,7 @@ class Game:
         return len(self.cells) == 9 and self.winner() is None
     
     def current_player(self):
-        return "X"
+        if len(self.cells) % 2 == 0:
+            return "X"
+        return "O"
 

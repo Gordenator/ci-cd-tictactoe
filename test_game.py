@@ -80,3 +80,7 @@ def test_win_on_last_move_is_not_draw():
 
 def test_x_moves_first():
     assert Game().current_player() == "X"
+
+
+def test_o_moves_after_x():
+    assert play((0, 0)).current_player() == "O"
