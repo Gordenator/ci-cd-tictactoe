@@ -71,3 +71,8 @@ def test_full_board_without_winner_is_draw():
 def test_cannot_move_after_win():
     with pytest.raises(ValueError):
         play((0, 0), (1, 0), (0, 1), (1, 1), (0, 2), (2, 2))
+
+
+def test_win_on_last_move_is_not_draw():
+    game = play((0, 0), (0, 1), (0, 2), (1, 0), (1, 1), (1, 2), (2, 1), (2, 0), (2, 2))
+    assert not game.is_draw()
