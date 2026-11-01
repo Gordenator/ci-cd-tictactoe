@@ -88,3 +88,8 @@ def test_o_moves_after_x():
 
 def test_nobody_moves_after_win():
     assert play((0, 0), (1, 0), (0, 1), (1, 1), (0, 2)).current_player() is None
+
+
+def test_version_is_1_0_0():
+    import game
+    assert game.__version__ == "1.0.0"
