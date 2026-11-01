@@ -84,3 +84,7 @@ def test_x_moves_first():
 
 def test_o_moves_after_x():
     assert play((0, 0)).current_player() == "O"
+
+
+def test_nobody_moves_after_win():
+    assert play((0, 0), (1, 0), (0, 1), (1, 1), (0, 2)).current_player() is None
